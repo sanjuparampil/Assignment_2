@@ -140,6 +140,23 @@ def line_agriculture(v):
     plt.savefig('agroculture.png', bbox_inches="tight", dpi = 300)
     plt.show()
 
+#Reading data to dataframe and selecting the required rows and columns
+df_energy = pd.read_csv("Energy_consump.csv",skiprows=lambda x: x not in rows)
+df_energy = df_energy. iloc[:, columns]
+
+df_energy = df_energy.drop(columns={"Country Name","Country Code"})
+#Transposing the dataframe
+df_energy_tr = df_energy.transpose()
+df_energy_tr=df_energy_tr.rename(columns={0:"AFW",1:"ARE",2:"AUS",3:"BGD",4:"CHN",5:"GBR",6:"IND",7:"JPN",8:"THA",9:"TUR",10:"USA"})
+
+#FInding mean Energy consumption from 1990-2019
+df_energy_tr = df_energy_tr[["AFW","ARE","AUS","BGD","CHN","GBR","IND","JPN","THA","TUR","USA"]].mean()
+
+
+#Convert dataframe to excel
+df_energy_tr = df_energy_tr.to_excel("Mean.xlsx")
+
+
     
 line_agriculture(df_agriculture_tr)
 #Calling the bar_no2 function    
