@@ -60,8 +60,53 @@ def bar_no2(z):
     plt.xticks(x,df_no2['Country Code'], fontsize=22)#rotation=90)
     #plt.savefig('bar1.png', bbox_inches="tight", dpi = 300)
     plt.show()
-#Reading data to dataframe and selecting the required rows and columns
 
+#Reading data to dataframe and selecting the required rows and columns
+df_fossil = pd.read_csv("Fossil.csv",skiprows=lambda x: x not in rows)
+df_fossil = df_fossil. iloc[:, columns]
+
+#Removing country names and country codes
+df_fossil = df_fossil.drop(columns={"Country Name","Country Code"})
+
+#Transposing the dataframe and renaming columns
+df_fossil_tr = df_fossil.transpose()
+df_fossil_tr = df_fossil_tr.rename(columns={0:"AFW",1:"ARE",2:"AUS",3:"BGD",4:"CHN",5:"GBR",6:"IND",7:"JPN",8:"THA",9:"TUR",10:"USA"})
+
+#Removing null values 
+df_fossil_tr = df_fossil_tr.dropna()
+print(df_fossil_tr)
+
+#Plotting the line graph
+
+def line_fossil(u):
+    """ This function plots line graph for years(x-axis)
+    vs Percentage of fossile consumption(y-axis).Visualization method used 
+    is LINE GRAPH"""
+    plt.figure(figsize=(35,20))
+    plt.plot(u.index, df_fossil_tr['AFW'],'--',label = "AFW")
+    plt.plot(u.index, df_fossil_tr['ARE'],'--',label = "ARE")
+    plt.plot(u.index, df_fossil_tr['AUS'],'--',label = "AUS")
+    plt.plot(u.index, df_fossil_tr['BGD'],'--',label = "BGD")
+    plt.plot(u.index, df_fossil_tr['CHN'],'--',label = "CHN")
+    plt.plot(u.index, df_fossil_tr['GBR'],'--',label = "GBR")
+    plt.plot(u.index, df_fossil_tr['IND'],'--',label = "IND")
+    plt.plot(u.index, df_fossil_tr['JPN'],'--',label = "JPN")
+    plt.plot(u.index, df_fossil_tr['THA'],'--',label = "THA")
+    plt.plot(u.index, df_fossil_tr['TUR'],'--',label = "TUR")
+    plt.plot(u.index, df_fossil_tr['USA'],'-',label = "USA")
+    plt.xlabel("Years",fontsize = 30)
+    plt.legend(fontsize = 25)
+    plt.title('Fossil Fuel Energy Consumption',size = 30)
+    plt.xticks(fontsize=25)
+
+    #plt.xticks(df_agriculture_tr['Country Code'], fontsize=22)#rotation=90)
+    plt.savefig('fossil.png', bbox_inches="tight", dpi = 300)
+    plt.show()
+
+
+    
+#Calling function line_fossil()
+line_fossil(df_fossil_tr)
 
 #Transposing the dataframe
 df_agriculture_tr = df_agriculture.transpose()
