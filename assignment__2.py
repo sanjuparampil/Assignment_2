@@ -18,7 +18,6 @@ def read(doc_name, col):
     d_frame_tr = d_frame_tr.dropna()
     return d_frame, d_frame_tr
 
-
 def read_set_index(doc_name, col):
     """This function reads files in the world bank data format, sets columns,
     sets 'Country Name' as index, returns original dataframe."""
@@ -26,7 +25,6 @@ def read_set_index(doc_name, col):
     d_frame = d_frame. iloc[:, col]
     d_frame = d_frame.set_index('Country Name')
     return d_frame
-
 
 # Selecting the index positions of rows and columns
 rows = [0, 4, 9, 14, 21, 41, 82, 110, 120, 234, 245, 252]
@@ -65,8 +63,6 @@ x = np.arange(len(population_df["Country Code"]))
 a = np.arange(len(no2_df["Country Code"]))
 
 # Plotting Bar graphs
-
-
 def bar_population(y):
     """ This function plots bar graph for countries(x-axis)
     vs Population(y-axis).Visualization method used 
@@ -82,7 +78,6 @@ def bar_population(y):
     plt.xticks(x, population_df['Country Code'], fontsize=22)  # rotation=90)
     plt.savefig('population.png', bbox_inches="tight", dpi=300)
     plt.show()
-
 
 def bar_no2(z):
     """ This function plots bar graph for countries(x-axis)
@@ -101,8 +96,6 @@ def bar_no2(z):
     plt.show()
 
 # Plotting the line graphs
-
-
 def line_agriculture(v):
     """ This function plots line graph for years(x-axis)
     vs Agriculture land area(y-axis).Visualization method used 
@@ -127,7 +120,6 @@ def line_agriculture(v):
     plt.savefig('agroculture.png', bbox_inches="tight", dpi=300)
     plt.show()
 
-
 def line_fossil(u):
     """ This function plots line graph for years(x-axis)
     vs Percentage of fossile consumption(y-axis).Visualization method used 
@@ -150,7 +142,6 @@ def line_fossil(u):
     plt.xticks(fontsize=25)
     plt.savefig('fossil.png', bbox_inches="tight", dpi=300)
     plt.show()
-
 
 # Finding mean Energy consumption from 1990-2019
 df_energy_tr = df_energy_tr[["AFW", "ARE", "AUS", "BGD",
