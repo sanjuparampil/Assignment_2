@@ -123,7 +123,7 @@ def line_agriculture(v):
 def line_fossil(u):
     """ This function plots line graph for years(x-axis)
     vs Percentage of fossile consumption(y-axis).Visualization method used 
-    is LINE GRAPH"""
+    is LINE graph"""
     plt.figure(figsize=(35, 20))
     plt.plot(u.index, fossil_df_tr['AFW'], '--', label="AFW")
     plt.plot(u.index, fossil_df_tr['ARE'], '--', label="ARE")
@@ -158,5 +158,6 @@ line_agriculture(agriculture_df_tr)
 bar_no2(no2_df)
 # Calling the bar_population function
 bar_population(population_df)
+
 
 
